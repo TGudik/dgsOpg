@@ -1,0 +1,71 @@
+.navWrapper {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    z-index: 50;
+    top: 0;
+
+    img {
+        height: 100%;
+    }
+}
+
+.navRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.basketNcount {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.basketBtn {
+    position: absolute;
+    
+}
+
+.count {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    font-family: var(--headings);
+    font-size: 40px;
+    transform: translate(-50%, -45%);
+}
+
+.burger {
+    position: relative;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    font-family: var(--headings);
+    list-style: none;
+    place-content: center;
+    text-align: center;
+}
+.open {
+    display: grid;
+}
+
+.navLink {
+   color: white; 
+   text-decoration: none;
+   font-size: 50px;
+}

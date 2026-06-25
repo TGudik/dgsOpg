@@ -1,0 +1,6 @@
+.empWrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 100px 20px;
+    gap: 20px;
+}
