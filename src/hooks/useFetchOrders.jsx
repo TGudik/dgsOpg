@@ -1,3 +1,5 @@
+
+/* returnerer funktioner som bruges til put, delete og post methods */
 export function useFetchOrders() {
     const apiUrl = `http://localhost:3042/order`;
 

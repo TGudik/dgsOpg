@@ -4,6 +4,7 @@ import { useFetchEmployees } from "../../hooks/useFetchEmployees"
 export default function Employee({setEmpToUpd, emp, id, name, position, img, bo}) {
     const {removeEmpById} = useFetchEmployees()
 
+    /* funktion fra useState så andet komponent får at vide hvilken ansat skal ændres i backoffice */
     return(
         <div className={styles.empWrapper}>
             <img src={img} alt={name} className={styles.empImg}/>

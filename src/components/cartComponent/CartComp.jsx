@@ -6,8 +6,11 @@ import { useFetchOrders } from "../../hooks/useFetchOrders"
 import { Link } from "react-router-dom"
 
 export default function CartComp() {
+    /* henter funktioner fra context */
     const { cartItems, addToCart, removeFromCart, getCartTotal, clearCart } = useContext(CartContext)
+    /* funktion til at sende til server */
     const { sendNewOrder } = useFetchOrders()
+    /* useStates */
     const [comment, setComment] = useState("")
     const [show, setShow] = useState(false)
 
@@ -22,6 +25,7 @@ export default function CartComp() {
     async function handleSubmit(e) {
         e.preventDefault()
 
+        /* server forventer et punkt navngivet dish, som er dishens id */
         const body = {
             dishes: cartItems.map(item => ({
                 ...item, 
@@ -32,7 +36,8 @@ export default function CartComp() {
         }
 
         await sendNewOrder(body)
-
+        
+        /* resetter kurv når sendt */
         setComment("")
         showSuccess()
         clearCart()

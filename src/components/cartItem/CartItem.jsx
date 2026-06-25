@@ -3,6 +3,7 @@ import { CartContext } from "../../context/Cart";
 import { useContext } from "react";
 
 export default function CartItem({dish, title, image, size, price, quantity}) {
+    
     const {addToCart, removeFromCart} = useContext(CartContext)
 
     return (

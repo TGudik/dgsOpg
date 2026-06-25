@@ -1,5 +1,7 @@
+/* gemmer apiUrl som variabel, så det kun skal opdateres et sted */
 const apiUrl = "http://localhost:3042"
 
+/* Fetch funktioner som henter alle objekter fra respektive ruter */
 export const categoriesLoader = async () => {
     const res = await fetch(`${apiUrl}/categories`)
     if (!res.ok) throw new Response("Fejl ved hentning", {status: res.status})

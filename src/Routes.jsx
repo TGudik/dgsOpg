@@ -11,7 +11,7 @@ import Contact from "./pages/Contact";
 import CartPage from "./pages/CartPage";
 import BaOfEmployees from "./pages/backoffice/baOfEmployees";
 
-
+/* Opretter ruter som, hvor relevant, indeholder en loader der gør data tilgængeligt til alle komponenter, når man er på ruten */
 const routes = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<AppLayout />} hydrateFallbackElement={<Loading/>}>

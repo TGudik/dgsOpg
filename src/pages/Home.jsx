@@ -6,7 +6,7 @@ import Dishes from "../components/dishes/Dishes";
 
 
 export default function Home() {
-
+    /* variabel oprettet til at kunne prop drille usestate-funktionen til categories komponent og variablet til at filtrere i dishes komponent*/
     const [selectedCategory, setSelectedCategory] = useState(null)
 
     const {categories, dishes} = useLoaderData()

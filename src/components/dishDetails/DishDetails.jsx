@@ -5,6 +5,7 @@ import { CartContext } from "../../context/Cart"
 export default function DishDetails({dish}) {
     const [size, setSize] = useState("normal")
 
+    /* henter fra context */
     const { cartItems, addToCart } = useContext(CartContext)
 
     console.log(cartItems)
@@ -43,6 +44,7 @@ export default function DishDetails({dish}) {
           </p>
         </div>
         <button onClick={() => {
+            /* tilføjer pris til dish og vælger den tilsvarende størrelses pris inden det sendes til kurv */
             addToCart({...dish, size: size, price: size === "normal" ? dish.price.normal : dish.price.family})
         }} 
         className={styles.addToCartBtn}>{`Tilføj ${dish.title} til kurven`}</button>

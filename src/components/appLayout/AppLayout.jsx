@@ -7,6 +7,7 @@ import { CartProvider } from "../../context/Cart";
 
 export default function AppLayout() {
 
+    /* CartProvider tillader at children kan hente context */
     return(
         <CartProvider>
             <div style={{minHeight: "100vh"}}>

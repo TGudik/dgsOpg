@@ -4,11 +4,13 @@ import styles from "./addEmployee.module.css"
 import { useRevalidator } from "react-router-dom"
 
 export default function AddEmployee() {
+    /* usestates */
     const [name, setName] = useState("")
     const [image, setImage] = useState(null)
     const [position, setPosition] = useState("")
     const [message, setMessage] = useState(false)
     
+    /* henter funktioner */
     const { revalidate } = useRevalidator()
     const { addEmployee } = useFetchEmployees() 
 
@@ -23,6 +25,7 @@ export default function AddEmployee() {
     function handleSubmit(e) {
         e.preventDefault()
 
+        /* formData kan indeholde filer og sendes som body i fetch funktion */
         const formData = new FormData()
         formData.append("name", name)
         formData.append("position", position)

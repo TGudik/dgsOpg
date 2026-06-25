@@ -8,6 +8,7 @@ export default function Employees({data}) {
 
     return(
         <div className={styles.gridWrapper}>
+            {/* mapper alle employees */}
             {employees.map((employee) => {
                 return(
                     <Employee

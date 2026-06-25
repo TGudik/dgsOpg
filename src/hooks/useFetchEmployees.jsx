@@ -1,7 +1,9 @@
 import { useRevalidator } from "react-router-dom";
 
+/* returnerer funktioner som bruges til put, delete og post methods */
 export function useFetchEmployees() {
     const apiUrl = `http://localhost:3042/employee`;
+    /* revalidate opdatere data når listen ændre sig, det fungerer sammen med dataloader */
     const { revalidate } = useRevalidator()
 
     async function removeEmpById(id) {

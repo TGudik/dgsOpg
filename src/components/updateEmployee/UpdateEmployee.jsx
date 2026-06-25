@@ -5,13 +5,19 @@ import { useFetchEmployees } from "../../hooks/useFetchEmployees";
 import { useRevalidator } from "react-router-dom";
 
 export default function UpdateEmployee({empToUpd}) {
+    /* Usestate variabler */
     const [name, setName] = useState("")
     const [image, setImage] = useState(null)
     const [position, setPosition] = useState("")
     const [message, setMessage] = useState(false)
+
+    /* Henter funktion*/
     const { updateEmployeeById } = useFetchEmployees() 
+
+    /* henter revalidate, som gør listen med ansatte genindlæser når kaldt */
     const { revalidate } = useRevalidator()
 
+    /* sætter værdi af state til hvad der er givet til komponent som prop */
     useEffect(() => {
         if (!empToUpd) return
 
@@ -20,6 +26,7 @@ export default function UpdateEmployee({empToUpd}) {
         setPosition(empToUpd.position)
     }, [empToUpd])
 
+    /* skjuler form hvis intet er valgt */
     if (!empToUpd) return <p>Vælg en ansat at opdatere</p>
 
     function showSuccess() {
@@ -30,9 +37,12 @@ export default function UpdateEmployee({empToUpd}) {
         }, 3000);
     }
 
+
     async function handleSubmit(e) {
+        /* stopper genindlæsning ved submit */
         e.preventDefault()
 
+        /* formData bruges til at sende i fetch body */
         const formData = new FormData()
         formData.append("id", empToUpd._id)
         formData.append("name", name)
@@ -41,6 +51,7 @@ export default function UpdateEmployee({empToUpd}) {
 
         await updateEmployeeById(formData)
 
+        /* reset efter submit */
         setName("")
         setImage("")
         setPosition("")

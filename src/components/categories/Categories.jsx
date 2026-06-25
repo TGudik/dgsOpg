@@ -4,6 +4,7 @@ import styles from "./categories.module.css"
 
 export default function Categories({selectedCategory, setSelectedCategory, categories}) {
 
+    /* sender props videre til enkelte kategorier */
     return(
         <div className={styles.wrapper}>
             <h3 className={styles.categoriesTitle}>Vælg kategori</h3>

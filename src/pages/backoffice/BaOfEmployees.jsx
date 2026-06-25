@@ -4,6 +4,7 @@ import UpdateEmployee from "../../components/updateEmployee/UpdateEmployee";
 import { useState } from "react";
 
 export default function BaOfEmployees() {
+    /* sender usestate funktion og variabel med prop drilling til relevante komponenter */
     const [empToUpd, setEmpToUpd] = useState(null) 
 
     return(
