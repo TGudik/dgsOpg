@@ -1,4 +1,5 @@
 import { useRevalidator } from "react-router-dom";
+import Swal from "sweetalert2";
 
 /* returnerer funktioner som bruges til put, delete og post methods */
 export function useFetchEmployees() {
@@ -7,6 +8,13 @@ export function useFetchEmployees() {
     const { revalidate } = useRevalidator()
 
     async function removeEmpById(id) {
+        const result = await Swal.fire({
+            icon: "warning",
+            title: "Er du sikker?",
+            showCancelButton: true,
+            confirmButtonText: "Ja, slet",
+        })
+        if (!result.isConfirmed) return
         try {
             const res = await fetch(`${apiUrl}/${id}`, {
                 method: "DELETE",
