@@ -11,7 +11,7 @@ export function AuthProvider({children}) {
     useEffect(() => {
         async function restoreSession() {
             try {
-                const data = authToken()
+                const data = await authToken()
                 setUser(data.data)
             } catch (error) {
                 setUser(null)

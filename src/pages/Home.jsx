@@ -4,7 +4,6 @@ import Welcome from "../components/welcome/Welcome";
 import { useLoaderData } from "react-router-dom";
 import Dishes from "../components/dishes/Dishes";
 import { useAuth } from "../context/AuthContext";
-import { getToken } from "../utils/token";
 
 
 export default function Home() {

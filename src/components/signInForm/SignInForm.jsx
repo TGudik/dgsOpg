@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./signInForm.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { getToken } from "../../utils/token";
 
 export default function SignInForm() {
   const navigate = useNavigate();
