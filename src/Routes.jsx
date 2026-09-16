@@ -10,6 +10,7 @@ import Dish from "./pages/Dish";
 import Contact from "./pages/Contact";
 import CartPage from "./pages/CartPage";
 import BaOfEmployees from "./pages/backoffice/baOfEmployees";
+import Login from "./pages/Login";
 
 /* Opretter ruter som, hvor relevant, indeholder en loader der gør data tilgængeligt til alle komponenter, når man er på ruten */
 const routes = createBrowserRouter(
@@ -37,6 +38,10 @@ const routes = createBrowserRouter(
             <Route
               path="cart"
               element={<CartPage />}
+            />
+            <Route
+              path="login"
+              element={<Login />}
             />
             <Route 
               path="backoffice/employees"

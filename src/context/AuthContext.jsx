@@ -27,10 +27,13 @@ export function AuthProvider({children}) {
         try {
             await signIn(email, password)
             const data = await authToken()
+            if (data.status !== "ok") {
+                throw new Error("Login fejlede")
+            }
             setUser(data.data)
         } catch (error) {
             setUser(null)
-            return error
+            throw error
         } finally {
             setLoading(false)
         }
