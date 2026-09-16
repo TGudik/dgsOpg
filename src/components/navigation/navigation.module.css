@@ -40,6 +40,18 @@
     transform: translate(-50%, -45%);
 }
 
+.loginBtn, .logoutBtn {
+    text-decoration: none;
+    color: black;
+    font-family: var(--headings);
+    font-size: 30px;
+}
+
+.logoutBtn {
+    background-color: transparent;
+    border: none;
+}
+
 .burger {
     position: relative;
     z-index: 999;
