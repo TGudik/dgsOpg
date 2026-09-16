@@ -5,9 +5,12 @@ import { RouterProvider } from 'react-router-dom'
 import routes from "./Routes"
 import "@fontsource/just-another-hand";
 import "@fontsource/kurale";
+import { AuthProvider } from './context/AuthContext'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={routes}/>
-  </StrictMode>,
+  <AuthProvider>
+    <StrictMode>
+      <RouterProvider router={routes}/>
+    </StrictMode>
+  </AuthProvider>
 )
