@@ -1,82 +1,103 @@
-import styles from "./updateCategory.module.css"
+import styles from "./updateCategory.module.css";
 import { useState, useEffect } from "react";
 import { useFetchCategories } from "../../../hooks/useFetchCategories";
-import { useLoaderData } from "react-router-dom";
-import { useRevalidator } from "react-router-dom";
+import { useLoaderData, useRevalidator } from "react-router-dom";
 
-export default function UpdateCategory({ selectedCategory, setSelectedCategory }) {
-  /* Usestate variabler */
+export default function UpdateCategory({
+  selectedCategory,
+  setSelectedCategory,
+}) {
   const [name, setName] = useState("");
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
-  /* Henter funktion*/
-  const { updateCategoryById } = useFetchCategories()
-  const categories = useLoaderData()
-
-  /* henter revalidate, som gør listen med ansatte genindlæser når kaldt */
+  const { updateCategoryById, addCategory, removeCatById } = useFetchCategories();
+  const categories = useLoaderData();
   const { revalidate } = useRevalidator();
+  const category = categories.find((cat) => cat.name === selectedCategory);
 
-  /* sætter værdi af state til hvad der er givet til komponent som prop */
   useEffect(() => {
-    if (!selectedCategory) return;
-    const category = categories.filter((cat) => cat.name === selectedCategory)[0]
+    /* ingen valgt kategori = tom formular til oprettelse */
+    if (!selectedCategory) {
+      setIsEditing(false);
+      setName("");
+      setImage(null);
+      return;
+    }
+
+    if (!category) return;
+
+    setIsEditing(true);
     setName(category.name);
-    setImage(category.image);
-  }, [selectedCategory]);
+    setImage(null);
+  }, [selectedCategory, categories]);
 
-
-  function showSuccess() {
+  function showMessage() {
     setMessage(true);
-
-    setTimeout(() => {
-      setMessage(false);
-    }, 3000);
+    setTimeout(() => setMessage(false), 3000);
   }
 
   async function handleSubmit(e) {
-    /* stopper genindlæsning ved submit */
     e.preventDefault();
 
-    const category = categories.filter((cat) => cat.name === selectedCategory)[0]
-
-    /* formData bruges til at sende i fetch body */
     const formData = new FormData();
-    formData.append("id", category._id);
     formData.append("name", name);
-    formData.append("file", image);
+    if (image) formData.append("file", image);
 
-    await updateCategoryById(formData);
+    if (isEditing) {
+      const category = categories.find((cat) => cat.name === selectedCategory);
+      formData.append("id", category._id);
+      await updateCategoryById(formData);
+    } else {
+      await addCategory(formData);
+    }
 
-    /* reset efter submit */
+    /* rydder hele formularen, inkl. filfeltet */
+    e.target.reset();
     setName("");
-    setImage("");
+    setImage(null);
+    setIsEditing(false);
     revalidate();
-    showSuccess();
-    setSelectedCategory(null)
+    showMessage();
+    setSelectedCategory(null);
   }
 
   return (
     <div>
-      {!selectedCategory && <p>Vælg en ansat at opdatere</p>}
-      {selectedCategory && (
-        <form className={styles.categoryForm} onSubmit={handleSubmit}>
-          <input
-            required
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            type="file"
-            accept="image/"
-            onChange={(e) => setImage(e.target.files[0])}
-          />
-          <button>Opdater Kategori</button>
-        </form>
+      <h3>{isEditing ? "Opdater kategori" : "Tilføj ny kategori"}</h3>
+
+      <form className={styles.categoryForm} onSubmit={handleSubmit}>
+        <input
+          required
+          type="text"
+          placeholder="Navn"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0] ?? null)}
+        />
+        <button>{isEditing ? "Opdater kategori" : "Tilføj kategori"}</button>
+      </form>
+
+      {isEditing && (
+        <div>
+            <button type="button" onClick={() => setSelectedCategory(null)}>
+              Annuller
+            </button>
+            <button onClick={() => {
+                removeCatById(category._id) 
+                showMessage()}}>
+                Slet kategori
+            </button>
+        </div>
+
       )}
-      {message && <p>Kategori blev opdateret</p>}
+
+      {message && <p>Succes</p>}
     </div>
   );
 }
