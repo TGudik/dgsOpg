@@ -1,0 +1,9 @@
+.ingWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ingName {
+    font-size: 24px;
+}

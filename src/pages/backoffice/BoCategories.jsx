@@ -1,6 +1,6 @@
 import BoCatList from "../../components/boComponents/boCatList/BoCatList";
 import { useState } from "react";
-import UpdateCategory from "../../components/boComponents/updateCategory/UpdateCategory";
+import AddUpdateCategory from "../../components/boComponents/updateCategory/AddUpdateCategory";
 
 
 export default function BoCategories() {
@@ -12,7 +12,7 @@ export default function BoCategories() {
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />
-        <UpdateCategory
+        <AddUpdateCategory
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
         />

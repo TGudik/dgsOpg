@@ -1,9 +1,9 @@
-import styles from "./updateCategory.module.css";
+import styles from "./addUpdateCategory.module.css";
 import { useState, useEffect } from "react";
 import { useFetchCategories } from "../../../hooks/useFetchCategories";
 import { useLoaderData, useRevalidator } from "react-router-dom";
 
-export default function UpdateCategory({
+export default function AddUpdateCategory({
   selectedCategory,
   setSelectedCategory,
 }) {
@@ -53,7 +53,7 @@ export default function UpdateCategory({
       await addCategory(formData);
     }
 
-    /* rydder hele formularen, inkl. filfeltet */
+    /* rydder hele formularen */
     e.target.reset();
     setName("");
     setImage(null);

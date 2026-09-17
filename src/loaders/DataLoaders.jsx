@@ -45,3 +45,11 @@ export const fetchDishById = async ({params}) => {
     const data = preData.data
     return data
 }
+
+export const ingredientsLoader = async () => {
+    const res = await fetch(`${apiUrl}/ingredients`)
+    if (!res.ok) throw new Response("Retten er ikke blevet fundet", {status: res.status})
+    const preData = await res.json()
+    const data = preData.data
+    return data
+}

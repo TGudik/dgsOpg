@@ -4,7 +4,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import AppLayout from "./components/appLayout/AppLayout";
 import Loading from "./components/loading/Loading";
 import Home from "./pages/Home";
-import { categoriesLoader, employeesLoader, fetchDishById, homeLoader } from "./loaders/DataLoaders";
+import { categoriesLoader, employeesLoader, fetchDishById, homeLoader, ingredientsLoader } from "./loaders/DataLoaders";
 import EmployeesPage from "./pages/EmployeesPage";
 import Dish from "./pages/Dish";
 import Contact from "./pages/Contact";
@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
 import Backoffice from "./pages/backoffice/Backoffice";
 import BoCategories from "./pages/backoffice/BoCategories";
+import BoIngredients from "./pages/backoffice/BoIngredients";
 
 /* Opretter ruter som, hvor relevant, indeholder en loader der gør data tilgængeligt til alle komponenter, når man er på ruten */
 const routes = createBrowserRouter(
@@ -63,6 +64,11 @@ const routes = createBrowserRouter(
                 path="categories"
                 element={<BoCategories />}
                 loader={categoriesLoader}
+              />
+              <Route
+                path="ingredients"
+                element={<BoIngredients />}
+                loader={ingredientsLoader}
               />
             </Route>
         </Route>
