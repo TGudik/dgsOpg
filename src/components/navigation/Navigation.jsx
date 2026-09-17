@@ -67,6 +67,12 @@ export default function Navigation() {
               Kurv
             </NavLink>
           </li>
+          {user?.role === "admin" && 
+          <li>
+            <NavLink className={styles.navLink} to="/backoffice" onClick={closeMenu}>
+              Backoffice
+            </NavLink>
+          </li>}
         </ul>
       </div>
     </div>

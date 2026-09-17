@@ -69,7 +69,6 @@ export default function UpdateEmployee({ empToUpd }) {
         onChange={(e) => setName(e.target.value)}
       />
       <input
-        required
         type="file"
         accept="image/"
         onChange={(e) => setImage(e.target.files[0])}
