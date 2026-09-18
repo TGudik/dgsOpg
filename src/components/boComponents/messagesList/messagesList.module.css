@@ -1,0 +1,12 @@
+.wrapper{
+    padding: 20px ;
+}
+
+.mesWrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    padding: 10px;
+    border-bottom: 1px solid black;
+}

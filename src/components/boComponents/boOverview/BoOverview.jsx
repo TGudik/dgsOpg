@@ -9,6 +9,7 @@ export default function BoOverview() {
             <Link className={styles.navBtn} to="categories">Kategorier</Link>
             <Link className={styles.navBtn} to="ingredients">Ingredienser</Link>
             <Link className={styles.navBtn} to="orders">Ordrer</Link>
+            <Link className={styles.navBtn} to="messages">beskeder</Link>
         </div>
     )
 

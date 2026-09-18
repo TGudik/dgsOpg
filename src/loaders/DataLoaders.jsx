@@ -73,3 +73,11 @@ export const boOrderLoader = async () => {
         dishes
     }
 }
+
+export const messagesLoader = async () => {
+    const res = await fetch(`${apiUrl}/messages`)
+    if (!res.ok) throw new Response("Kunne ikke hente beskeder")
+    const preData = await res.json()
+    const data = preData.data
+    return data
+}
