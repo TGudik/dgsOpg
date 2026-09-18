@@ -48,8 +48,28 @@ export const fetchDishById = async ({params}) => {
 
 export const ingredientsLoader = async () => {
     const res = await fetch(`${apiUrl}/ingredients`)
-    if (!res.ok) throw new Response("Retten er ikke blevet fundet", {status: res.status})
+    if (!res.ok) throw new Response("Retterne er ikke blevet fundet", {status: res.status})
     const preData = await res.json()
     const data = preData.data
     return data
+}
+
+export const orderLoaders = async () => {
+    const res = await fetch(`${apiUrl}/orders`)
+    if (!res.ok) throw new Response("Fejl i at hente ordrer", {status: res.status})
+    const preData = await res.json()
+    const data = preData.data
+    return data
+}
+
+export const boOrderLoader = async () => {
+    const [orders, dishes] = await Promise.all([
+        orderLoaders(),
+        dishesLoader(),
+    ])
+
+    return {
+        orders,
+        dishes
+    }
 }
